@@ -1,0 +1,6 @@
+package com.mirjalol.dostlar_app
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
