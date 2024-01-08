@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class CustomTextField extends StatelessWidget {
   final String labelName;
   final TextInputType keybordType;
-  const CustomTextField({super.key, required this.labelName, required this.keybordType});
+  final TextEditingController controller;
+  const CustomTextField({super.key, required this.labelName, required this.keybordType, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +15,7 @@ class CustomTextField extends StatelessWidget {
       width: maxWidth,
       child: TextField(
         keyboardType: keybordType,
+        controller: controller,
         decoration: InputDecoration(
             labelText: labelName,
             labelStyle: const TextStyle(

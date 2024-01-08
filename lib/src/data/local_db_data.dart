@@ -32,7 +32,6 @@ class LocalDataSourceImpl implements LocalDataSource{
 
   @override
   Future<bool> store(StorageKey key, String data)async {
-
     return db.setString(key.name, data);
   }
 
@@ -40,5 +39,5 @@ class LocalDataSourceImpl implements LocalDataSource{
 
 
 enum StorageKey{
-  cooked
+  id
 }

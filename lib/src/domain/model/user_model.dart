@@ -1,6 +1,6 @@
 class User{
   String name;
-  int age;
+  String age;
   String description;
 
   User({
@@ -10,18 +10,21 @@ class User{
 });
 
   factory User.fromJson(Map<String,Object?> json) {
-    return User(name: json["name"] as String, age: json["age"] as int, description: json["description"] as String);
+    return User(name: json["name"] as String, age: json["age"] as String, description: json["description"] as String);
   }
 
 
   Map<String, dynamic> toJson() => {
     "name": name,
-    "description": description,
     "age": age,
+    "description": description,
   };
 
   @override
   String toString() {
     return "User(name: $name, age: $age, description: $description)";
   }
+
+  @override
+  int get hashCode => Object.hash(name,age);
 }

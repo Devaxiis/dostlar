@@ -1,3 +1,5 @@
+import 'package:dostlar_app/src/core/service_locator.dart';
+import 'package:dostlar_app/src/domain/model/user_model.dart';
 import 'package:dostlar_app/src/presentation/component/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,7 +11,9 @@ class DostQoshishScreen extends StatefulWidget {
   State<DostQoshishScreen> createState() => _DostQoshishScreenState();
 }
 
-
+TextEditingController nameController = TextEditingController(text: "");
+TextEditingController ageController = TextEditingController(text:"" );
+TextEditingController descController = TextEditingController(text: "");
 
 class _DostQoshishScreenState extends State<DostQoshishScreen> {
   @override
@@ -30,17 +34,24 @@ class _DostQoshishScreenState extends State<DostQoshishScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Spacer(flex: 2,),
-              const CustomTextField(labelName: "name",keybordType: TextInputType.text,),
+               CustomTextField(labelName: "name",keybordType: TextInputType.text,controller: nameController ,),
               const Spacer(),
-              const CustomTextField(labelName: "age",keybordType: TextInputType.number,),
+               CustomTextField(labelName: "age",keybordType: TextInputType.number,controller:ageController,),
               const Spacer(),
-              const CustomTextField(labelName: "Description",keybordType: TextInputType.text,),
+               CustomTextField(labelName: "Description",keybordType: TextInputType.text,controller:descController,),
               const Spacer(flex: 6,),
               Material(
                 borderRadius: const BorderRadius.all(Radius.circular(12)),
                 clipBehavior: Clip.antiAlias,
                 child: InkWell(
-                  onTap: (){},
+                  onTap: (){
+                    final data =  User(name: nameController.text.trim(), age: ageController.text.trim(), description: descController.text.trim());
+                    repository.storeUser(data);
+                    setState(() {});
+                    nameController.text = '';
+                    ageController.text = '';
+                    descController.text = '';
+                  },
                   child: Container(
                     height: 54,
                     width: maxWidth,
